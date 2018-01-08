@@ -36,6 +36,8 @@ class FeatureToggleController {
 
     }
 
+
+    @CrossOrigin
     @PutMapping(path = ["/featureToggles"])
     @ResponseBody
     fun addNewUser(@RequestParam storeNumber: String,
