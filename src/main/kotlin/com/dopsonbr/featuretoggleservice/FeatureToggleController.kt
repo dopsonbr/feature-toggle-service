@@ -1,8 +1,11 @@
 package com.dopsonbr.featuretoggleservice
 
+import io.micrometer.core.annotation.Timed
+import io.micrometer.spring.web.servlet.WebMvcMetrics
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.Repository
+import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -15,8 +18,12 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 
+@ControllerAdvice
+@Timed
+@CrossOrigin
 @RestController
 class FeatureToggleController {
+
 
     @Autowired
     lateinit var storeFeatureToggleRepository: storeFeatureToggleRepository
@@ -24,7 +31,7 @@ class FeatureToggleController {
     @Autowired
     lateinit var storeFeatureToggleRepository2: storeFeatureToggleRepository2
 
-    @CrossOrigin
+
     @GetMapping(value = ["/featureToggles"])
     fun fetchFeatureToggles(@RequestParam storeNumber: String = "9798",
                             @RequestParam environment: String = "development",
@@ -37,7 +44,6 @@ class FeatureToggleController {
     }
 
 
-    @CrossOrigin
     @PutMapping(path = ["/featureToggles"])
     @ResponseBody
     fun addNewUser(@RequestParam storeNumber: String,

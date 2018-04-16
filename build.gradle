@@ -36,9 +36,18 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
+
+    compile 'org.springframework.boot:spring-boot-actuator'
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+
+    compile 'io.micrometer:micrometer-core:latest.integration'
+    compile 'io.micrometer:micrometer-spring-legacy:latest.release'
+
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
+
+    compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.0.0-rc.7'
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
